@@ -1,3 +1,9 @@
+<?php  
+include "config/aksi.php";
+if($_SESSION['login'] == TRUE){
+  echo "<script type='text/javascript'>document.location.href = 'home.php';</script>";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,7 +25,7 @@
   </head>
   <body>
     <section id="index">
-      <div class="container">
+      <form action="" method="post" class="container">
         <div class="row justify-content-center">
           <img
             class="img-fluid mb-3 mt-5"
@@ -32,6 +38,7 @@
           <div class="form-floating mt-3 mb-3">
             <input
               type="email"
+              name="email"
               class="form-control"
               id="floatingInput"
               placeholder="name@example.com"
@@ -41,17 +48,23 @@
           <div class="form-floating mb-3">
             <input
               type="password"
+              name="pass"
               class="form-control"
               id="floatingPassword"
               placeholder="Password"
             />
             <label for="floatingPassword">Password</label>
           </div>
+          <?php if($notif_error != ""){ ?>
+            <p class="notif-eror" style="font-size: 10px; color:red;">
+              *<?php echo $notif_error; ?>
+            </p>
+            <?php } ?>
           <div class="col">
-            <button class="btn btn-success">MASUK AKUN</button>
+            <button type="submit" name="login" class="btn btn-success">MASUK AKUN</button>
           </div>
         </div>
-      </div>
+      </form>
     </section>
     <section id="footer ">
       <div class="container mt-5">

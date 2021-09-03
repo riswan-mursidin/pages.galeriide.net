@@ -26,7 +26,7 @@
             <p>Selamat datang di aplikasi Landing Page Galeriide</p>
           </div>
           <div class="col-4 col-sm-3">
-            <a href="customer.html"
+            <a href="customer.php"
               ><div class="box-menu">
                 <img
                   class="img-fluid mx-auto d-block"
@@ -37,7 +37,7 @@
             <p class="mt-3 text-menu">CUSTOMER</p>
           </div>
           <div class="col-4 col-sm-3">
-            <a href="analytics.html"
+            <a href="analytics.php"
               ><div class="box-menu">
                 <img
                   class="img-fluid mx-auto d-block"
