@@ -78,7 +78,7 @@ if($_SESSION['login'] != TRUE){
                 $valuefb = mysqli_num_rows($queryfb) > 0 ? $rowfb['script_pixel'] : "";
             ?>
             <h1>FACEBOOK PIXEL</h1>
-            <p>Masukkan script Facebokk Pixel</p>
+            <p>Masukkan script Facebok Pixel</p>
             <div class="form-floating shadow-sm">
               <textarea
                 class="form-control"
