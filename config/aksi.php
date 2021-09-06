@@ -47,4 +47,49 @@ if(isset($_POST['deletecustomer'])){
     mysqli_query($conn, "DELETE FROM customer WHERE id_customer='$id'");
 }
 
+if(isset($_POST['kirimwa'])){
+    $idcos = $_POST['id'];
+    $hariini = date("Y-m-d");
+    $querycoss = mysqli_query($conn, "UPDATE customer SET waktu_send='$hariini' WHERE id_customer='$idcos'");
+    $kontak = $_POST['namakontak'];
+    $id = $_POST['teksinput'];
+    $queryteks = mysqli_query($conn, "SELECT isi_pesan FROM pesan WHERE id_pesan='$id'");
+    $rowteks = mysqli_fetch_assoc($queryteks);
+    $teks = $rowteks['isi_pesan'];
+    $no = $_POST['no'];
+    $arrayteks = preg_split('/\r\n|\r|\n/', $teks);
+    $tekswa = '';
+    for ($i=0;$i<count($arrayteks);$i++){
+        $tekswa .=$arrayteks[$i].'%0A';
+    } 
+    $dengannama = explode("#nama",$tekswa);
+    $mystring = $tekswa;
+    $findme   = '#nama';
+    if(strpos($mystring, $findme)){
+        $tekswa = $dengannama[0].$kontak.$dengannama[1];
+    }
+    echo "<script type='text/javascript'>document.location.href = 'https://api.whatsapp.com/send?phone=62".$no."&text=".$tekswa."';</script>";
+    die();
+}
+
+if(isset($_POST['googleaksi'])){
+    $script = $_POST['google'];
+    $querygoogle = mysqli_query($conn, "SELECT id_analysis FROM google_analysis ");
+    if(mysqli_num_rows($querygoogle) > 0){
+        mysqli_query($conn, "UPDATE google_analysis SET script_analysis='$script' ");
+    }else{
+        mysqli_query($conn, "INSERT INTO google_analysis (script_analysis) VALUES('$script')");
+    }
+}
+
+if(isset($_POST['fbaksi'])){
+    $script = $_POST['fb'];
+    $queryfb = mysqli_query($conn, "SELECT id_pixel FROM fb_pixel ");
+    if(mysqli_num_rows($queryfb) > 0){
+        mysqli_query($conn, "UPDATE fb_pixel SET script_pixel='$script'");
+    }else{
+        mysqli_query($conn, "INSERT INTO fb_pixel (script_pixel) VALUES('$script')");
+    }
+}
+
 ?>

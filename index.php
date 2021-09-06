@@ -86,3 +86,4 @@ if($_SESSION['login'] == TRUE){
     ></script>
   </body>
 </html>
+<?php mysqli_close($conn) ?>

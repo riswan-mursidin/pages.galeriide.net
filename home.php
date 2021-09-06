@@ -1,3 +1,9 @@
+<?php  
+include "config/aksi.php"; 
+if($_SESSION['login'] != TRUE){
+    echo "<script type='text/javascript'>document.location.href = 'index.php';</script>";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,13 +54,15 @@
             <p class="mt-3 text-menu">Analytcs</p>
           </div>
           <div class="col-4 col-sm-3">
-            <div class="box-menu">
-              <img
-                class="img-fluid mx-auto d-block"
-                src="img/akun.png"
-                alt=""
-              />
-            </div>
+            <a href="logout.php">
+              <div class="box-menu">
+                <img
+                  class="img-fluid mx-auto d-block"
+                  src="img/akun.png"
+                  alt=""
+                />
+              </div>
+            </a>
             <p class="mt-3 text-menu">log out</p>
           </div>
         </div>
@@ -80,3 +88,4 @@
     ></script>
   </body>
 </html>
+<?php mysqli_close($conn) ?>

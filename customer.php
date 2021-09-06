@@ -1,4 +1,9 @@
-<?php include "config/aksi.php" ?>
+<?php 
+include "config/aksi.php"; 
+if($_SESSION['login'] != TRUE){
+    echo "<script type='text/javascript'>document.location.href = 'index.php';</script>";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -237,3 +242,4 @@
     ></script>
   </body>
 </html>
+<?php mysqli_close($conn) ?>

@@ -1,3 +1,9 @@
+<?php 
+include "config/aksi.php"; 
+if($_SESSION['login'] != TRUE){
+    echo "<script type='text/javascript'>document.location.href = 'index.php';</script>";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,14 +42,19 @@
               aria-label="breadcrumb"
             >
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="home.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="home.php">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">
                   Analytcs
                 </li>
               </ol>
             </nav>
           </div>
-          <div class="col-12">
+          <form action="" method="post" class="col-12">
+          <?php  
+                $querygoogle = mysqli_query($conn, "SELECT * FROM google_analysis");
+                $rowgoogle = mysqli_fetch_assoc($querygoogle);
+                $valuegoogle = mysqli_num_rows($querygoogle) > 0 ? $rowgoogle['script_analysis'] : "";
+          ?>
             <h1>GOOGLE ANALYTICS</h1>
             <p>Masukkan script Google Analytics</p>
             <div class="form-floating shadow-sm">
@@ -52,14 +63,20 @@
                 placeholder="Leave a comment here"
                 id="floatingTextarea2"
                 style="height: 100px"
-              ></textarea>
+                name="google"
+              ><?= $valuegoogle ?></textarea>
               <label for="floatingTextarea2">Script </label>
             </div>
             <div class="col mt-3">
-              <button class="btn btn-success">SIMPAN</button>
+              <button type="submit" name="googleaksi" class="btn btn-success">SIMPAN</button>
             </div>
-          </div>
-          <div class="col-12 mt-5">
+          </form>
+          <form action="" method="post" class="col-12 mt-5">
+          <?php  
+                $queryfb = mysqli_query($conn, "SELECT * FROM fb_pixel");
+                $rowfb = mysqli_fetch_assoc($queryfb);
+                $valuefb = mysqli_num_rows($queryfb) > 0 ? $rowfb['script_pixel'] : "";
+            ?>
             <h1>FACEBOOK PIXEL</h1>
             <p>Masukkan script Facebokk Pixel</p>
             <div class="form-floating shadow-sm">
@@ -68,13 +85,14 @@
                 placeholder="Leave a comment here"
                 id="floatingTextarea2"
                 style="height: 100px"
-              ></textarea>
+                name="fb"
+              ><?= $valuefb ?></textarea>
               <label for="floatingTextarea2">Script </label>
             </div>
             <div class="col mt-3">
-              <button class="btn btn-success">SIMPAN</button>
+              <button type="submit" name="fbaksi" class="btn btn-success">SIMPAN</button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </section>
