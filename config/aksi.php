@@ -95,7 +95,7 @@ if(isset($_POST['googleaksi'])){
             echo '<script> alert("gagal"); </script>';
         }
     }else{
-        mysqli_query($conn, "INSERT INTO google_analysis (script_analysis) VALUES('$script')");
+        mysqli_query($conn, "INSERT INTO google_analysis (script_analysis) VALUES('$scriptdb')");
     }
 }
 
@@ -122,7 +122,7 @@ if(isset($_POST['fbaksi'])){
             echo '<script> alert("gagal"); </script>';
         }
     }else{
-        mysqli_query($conn, "INSERT INTO fb_pixel (script_pixel) VALUES('$script')");
+        mysqli_query($conn, "INSERT INTO fb_pixel (script_pixel) VALUES('$scriptdb')");
     }
 }
 
